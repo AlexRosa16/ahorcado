@@ -113,6 +113,8 @@ class juegoAhorcado:
                     print(self.SALVADO[0])
                     print('¡Bien hecho! la palabra secreta es :', secreto)
                     print('Has ganado!')
+		    nombre = input("Dime tu nombre")
+                    print("Hola" + nombre)
                     break
             else:
                 LetrasIncorrectas.append(NuevaLetra)
@@ -121,6 +123,8 @@ class juegoAhorcado:
                     self.dibujar(LetrasIncorrectas, LetrasCorrectas, secreto)
                     print('Demasiados intentos!')
                     print('La palabra era "{}"'.format(secreto))
+		    nombre = input("Dime tu nombre")
+		    print("Hola" + nombre)
                     break
 
     def dibujar(self, LetrasIncorrectas, LetrasCorrectas, secreto):
