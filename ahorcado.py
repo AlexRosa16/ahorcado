@@ -19,7 +19,6 @@ def DIMELETRA(LetraRepetida):
             return adivina
 
 
-
 class juegoAhorcado:
     ESTADOS = [
         r"""
@@ -89,9 +88,23 @@ class juegoAhorcado:
     / \ |
     ====="""]
 
-    Categoria = 'FRUTAS'
-    PalabrasCategoria = 'PERA PLATANO UVA MANZANA MELOCOTON KIWI ALBARICOQUE CEREZA CIRUELA FRESA GRANADA HIGO LIMA ' \
-                        'LIMON MANDARINA NARANJA MELON MORA NISPERO PIÑA POMELO SANDIA '.split()
+    categorias = ['Frutas', 'Animales', 'Países']
+    categoria_elegida = random.choice(categorias)
+    if categoria_elegida == 'FRUTAS':
+        Categoria = 'FRUTAS'
+        PalabrasCategoria = 'PERA PLATANO UVA MANZANA MELOCOTON KIWI ALBARICOQUE CEREZA CIRUELA FRESA GRANADA HIGO ' \
+                            'LIMA ' \
+                            'LIMON MANDARINA NARANJA MELON MORA NISPERO PIÑA POMELO SANDIA '.split()
+
+    elif categoria_elegida == 'Animales':
+        Categoria = 'ANIMALES'
+        PalabrasCategoria = 'León Tigre Elefante Girafa Cebra Hipopótamo Lobo Oso Jirafa Koala Panda Pingüino Tortuga ' \
+                            'Rana Serpiente '.split()
+
+    elif categoria_elegida == 'Países':
+        Categoria = 'PAISES'
+        PalabrasCategoria = 'España Francia Alemania Italia Reino Unido Estados Unidos Canadá México Argentina Brasil ' \
+                            'China India Japón Australia  '.split()
 
     def __init__(self):
         self.num_intentos = len(self.ESTADOS) - 1
