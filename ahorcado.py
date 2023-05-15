@@ -4,8 +4,11 @@ import random
 def DIMELETRA(LetraRepetida):
     while True:
         print('Adivina una letra.')
+        print('Si deseas acabar el programa escribe TERMINAR.')
         adivina = input('> ').upper()
-        if len(adivina) != 1:
+        if adivina == "TERMINAR":
+            break
+        elif len(adivina) != 1:
             print('Introduce una única letra.')
         elif adivina in LetraRepetida:
             print('Esa letra ya la sabías. Elige otra vez.')
@@ -14,6 +17,7 @@ def DIMELETRA(LetraRepetida):
 
         else:
             return adivina
+
 
 
 class juegoAhorcado:
@@ -89,6 +93,12 @@ class juegoAhorcado:
     PalabrasCategoria = 'PERA PLATANO UVA MANZANA MELOCOTON KIWI ALBARICOQUE CEREZA CIRUELA FRESA GRANADA HIGO LIMA ' \
                         'LIMON MANDARINA NARANJA MELON MORA NISPERO PIÑA POMELO SANDIA '.split()
 
+    def __init__(self):
+        self.num_intentos = len(self.ESTADOS) - 1
+
+    def obtener_num_intentos(self):
+        return self.num_intentos
+
     def jugar(self):
 
         LetrasIncorrectas = []
@@ -99,6 +109,12 @@ class juegoAhorcado:
             self.dibujar(LetrasIncorrectas, LetrasCorrectas, secreto)
 
             NuevaLetra = DIMELETRA(LetrasIncorrectas + LetrasCorrectas)
+
+            if NuevaLetra is None:
+                self.dibujar(LetrasIncorrectas, LetrasCorrectas, secreto)
+                print('La palabra secreta es :', secreto)
+                print("¡Programa finalizado por el usuario!")
+                break
 
             if NuevaLetra in secreto:
 
@@ -113,20 +129,27 @@ class juegoAhorcado:
                     print(self.SALVADO[0])
                     print('¡Bien hecho! la palabra secreta es :', secreto)
                     print('Has ganado!')
+                    nombre = input("Dime tu nombre")
+                    print("Hola" + nombre)
                     break
             else:
                 LetrasIncorrectas.append(NuevaLetra)
 
-                if len(LetrasIncorrectas) == len(self.ESTADOS) - 1:
+                self.num_intentos -= 1
+
+                if self.num_intentos == 0:
                     self.dibujar(LetrasIncorrectas, LetrasCorrectas, secreto)
                     print('Demasiados intentos!')
                     print('La palabra era "{}"'.format(secreto))
+                    nombre = input("Dime tu nombre")
+                    print("Hola" + nombre)
                     break
 
     def dibujar(self, LetrasIncorrectas, LetrasCorrectas, secreto):
         print(self.ESTADOS[len(LetrasIncorrectas)])
         print('La categoría es: ', self.Categoria)
         print()
+        print("Te quedan " + str(self.num_intentos) + " intentos")
 
         print('Letras incorrectas: ', end='')
         for Letra in LetrasIncorrectas:
