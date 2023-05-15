@@ -19,6 +19,7 @@ def DIMELETRA(LetraRepetida):
             return adivina
 
 
+
 class juegoAhorcado:
     ESTADOS = [
         r"""
@@ -105,6 +106,12 @@ class juegoAhorcado:
         Categoria = 'PAISES'
         PalabrasCategoria = 'España Francia Alemania Italia Reino Unido Estados Unidos Canadá México Argentina Brasil ' \
                             'China India Japón Australia  '.split()
+
+    def __init__(self):
+        self.num_intentos = len(self.ESTADOS) - 1
+
+    def obtener_num_intentos(self):
+        return self.num_intentos
 
     def __init__(self):
         self.num_intentos = len(self.ESTADOS) - 1
